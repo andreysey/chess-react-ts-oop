@@ -1,17 +1,19 @@
-import React from "react";
 import { Figure } from "../models/figures/Figure";
 
 interface LostFiguresProps {
-    title: string;
-    figures: Figure[];
+  title: string;
+  figures: Figure[];
 }
 
-const LostFigures = ({title, figures}: LostFiguresProps) => {
+export default function LostFigures({ title, figures }: LostFiguresProps) {
   return (
     <div className="lost">
-      <h3>{title}</h3>
+      <p>{title}</p>
+      {figures.map((figure) => (
+        <div key={figure.id}>
+          {figure.name} {figure.logo}
+        </div>
+      ))}
     </div>
   );
-};
-
-export default LostFigures;
+}

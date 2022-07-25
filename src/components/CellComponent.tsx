@@ -1,4 +1,3 @@
-import React, { FC } from "react";
 import { Cell } from "../models/Cell";
 
 interface CellProps {
@@ -7,7 +6,7 @@ interface CellProps {
   click: (cell: Cell) => void;
 }
 
-const CellComponent = ({ cell, selected, click }: CellProps) => {
+export default function CellComponent({ cell, selected, click }: CellProps) {
   return (
     <div
       className={["cell", cell.color, selected ? "selected" : ""].join(" ")}
@@ -18,6 +17,4 @@ const CellComponent = ({ cell, selected, click }: CellProps) => {
       {cell.figure?.logo}
     </div>
   );
-};
-
-export default CellComponent;
+}

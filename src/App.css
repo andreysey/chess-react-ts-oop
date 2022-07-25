@@ -1,7 +1,33 @@
-/* * {
+* {
     margin: 0;
     padding: 0;
-} */
+    /* background-color: lightblue; */
+}
+
+.menu {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction:column;
+  gap: 30px;
+  
+}
+
+.menu button {
+  width: 150px;
+  height: 40px;
+  font-size: large;
+}
+
+.app button {
+  width: 150px;
+  height: 40px;
+  font-size: large;
+  margin-left: 50px;
+  margin-bottom: 50px;
+}
 
 .app {
   width: 100vw;
@@ -44,4 +70,11 @@
   width: 12px;
   border-radius: 50%;
   background-color: brown;
+}
+
+.lost {
+  height: 30vh;
+  padding: 30px;
+  margin-left: 50px;
+  background-color: lightgray;
 }

@@ -30,6 +30,8 @@ export class Board {
   public getCopyBoard(): Board {
     const newBoard = new Board();
     newBoard.cells = this.cells;
+    newBoard.lostBlackFigures = this.lostBlackFigures;
+    newBoard.lostWhiteFigures = this.lostWhiteFigures;
     return newBoard;
   }
 
@@ -85,12 +87,21 @@ export class Board {
     new Rook(Colors.BLACK, this.getCell(7, 0));
   }
 
-  public addFigures() {
+  public addChessFigures() {
     this.addBishops();
     this.addKings();
     this.addKnights();
     this.addPawns();
     this.addQueens();
     this.addRooks();
+  }
+
+  private addWhiteStones() {}
+
+  private addBlackStones() {}
+
+  public addCheckersFigures() {
+    this.addWhiteStones();
+    this.addBlackStones();
   }
 }

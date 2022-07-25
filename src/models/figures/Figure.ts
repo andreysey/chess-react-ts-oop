@@ -14,6 +14,9 @@ export enum FigureIcon {
   blackBishop = "\u265D",
   blackKnight = "\u265E",
   blackPawn = "\u265F",
+  checkerBoard = "🙾",
+  whiteStone = "⚪",
+  blackStone = "⚫",
 }
 
 export enum FigureNames {

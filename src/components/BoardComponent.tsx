@@ -1,7 +1,6 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Board } from "../models/Board";
 import { Cell } from "../models/Cell";
-import { Colors } from "../models/Colors";
 import { Player } from "../models/Player";
 import CellComponent from "./CellComponent";
 
@@ -12,13 +11,13 @@ interface BoardProps {
   swapPlayer: () => void;
 }
 
-const BoardComponent = ({
+export default function BoardComponent({
   board,
   setBoard,
   currentPlayer,
   swapPlayer,
-}: BoardProps) => {
-  const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
+}: BoardProps) {
+  const [selectedCell, setSelectedCell] = useState<Cell | null>(null);  
 
   const click = (cell: Cell) => {
     if (
@@ -52,7 +51,7 @@ const BoardComponent = ({
 
   return (
     <div>
-      <p>Step {currentPlayer?.color === Colors.WHITE ? "White" : "Black"}</p>
+      <p>Step {currentPlayer?.color}</p>
       <div className="board">
         {board.cells.map((row, index) => (
           <React.Fragment key={index}>
@@ -71,6 +70,4 @@ const BoardComponent = ({
       </div>
     </div>
   );
-};
-
-export default BoardComponent;
+}
