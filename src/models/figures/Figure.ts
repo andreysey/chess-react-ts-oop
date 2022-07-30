@@ -27,6 +27,7 @@ export enum FigureNames {
   BISHOP = "Bishop",
   KNIGHT = "Knight",
   PAWN = "Pawn",
+  STONE = "Stone",
 }
 
 export class Figure {
@@ -49,6 +50,8 @@ export class Figure {
     if (target.figure?.color === this.color) return false;
 
     if (target.figure?.name === FigureNames.KING) return false;
+
+    // if (target.figure?.name === FigureNames.STONE) return false;
 
     return true;
   }

@@ -7,6 +7,7 @@ import { Knight } from "./figures/Knight";
 import { Pawn } from "./figures/Pawn";
 import { Queen } from "./figures/Queen";
 import { Rook } from "./figures/Rook";
+import { Stone } from "./figures/Stone";
 
 export class Board {
   cells: Cell[][] = [];
@@ -96,9 +97,31 @@ export class Board {
     this.addRooks();
   }
 
-  private addWhiteStones() {}
+  private addWhiteStones() {
+    for (let x = 0; x < 8; x++) {
+      for (let y = 5; y < 8; y++) {
+        if (x % 2 !== 0 && y % 2 === 0) {
+          new Stone(Colors.WHITE, this.getCell(x, y));
+        }
+        if (x % 2 === 0 && y % 2 !== 0) {
+          new Stone(Colors.WHITE, this.getCell(x, y));
+        }
+      }
+    }
+  }
 
-  private addBlackStones() {}
+  private addBlackStones() {
+    for (let x = 0; x < 8; x++) {
+      for (let y = 0; y < 3; y++) {
+        if (x % 2 !== 0 && y % 2 === 0) {
+          new Stone(Colors.BLACK, this.getCell(x, y));
+        }
+        if (x % 2 === 0 && y % 2 !== 0) {
+          new Stone(Colors.BLACK, this.getCell(x, y));
+        }
+      }
+    }
+  }
 
   public addCheckersFigures() {
     this.addWhiteStones();
