@@ -1,6 +1,6 @@
 import { Board } from "./Board";
 import { Colors } from "./Colors";
-import { Figure } from "./figures/Figure";
+import { Figure } from "../features/Figure";
 
 export class Cell {
   readonly x: number;
@@ -46,7 +46,7 @@ export class Cell {
     const min = Math.min(this.y, target.y);
     const max = Math.max(this.y, target.y);
     for (let y = min + 1; y < max; y++) {
-      if (!this.board.getCell(this.x, y).isEmpty()) {
+      if (!this.board.getCell(this.x, y)?.isEmpty()) {
         return false;
       }
     }
@@ -61,7 +61,7 @@ export class Cell {
     const min = Math.min(this.x, target.x);
     const max = Math.max(this.x, target.x);
     for (let x = min + 1; x < max; x++) {
-      if (!this.board.getCell(x, this.y).isEmpty()) {
+      if (!this.board.getCell(x, this.y)?.isEmpty()) {
         return false;
       }
     }
@@ -80,7 +80,7 @@ export class Cell {
     const dx = this.x < target.x ? 1 : -1;
 
     for (let i = 1; i < absY; i++) {
-      if (!this.board.getCell(this.x + dx * i, this.y + dy * i).isEmpty()) {
+      if (!this.board.getCell(this.x + dx * i, this.y + dy * i)!.isEmpty()) {
         return false;
       }
     }

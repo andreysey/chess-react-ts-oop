@@ -1,6 +1,6 @@
-import { Cell } from "../Cell";
-import { Colors } from "../Colors";
-import { Figure, FigureIcon, FigureNames } from "./Figure";
+import { Cell } from "../../models/Cell";
+import { Colors } from "../../models/Colors";
+import { Figure, FigureIcon, FigureNames } from "../Figure";
 
 export class Bishop extends Figure {
   constructor(color: Colors, cell: Cell) {
@@ -15,7 +15,7 @@ export class Bishop extends Figure {
       return false;
     }
 
-    if(this.cell.isEmptyDiagonal(target)) {
+    if(this.cell?.isEmptyDiagonal(target)) {
       return true;
     }
 

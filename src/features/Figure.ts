@@ -1,5 +1,5 @@
-import { Cell } from "../Cell";
-import { Colors } from "../Colors";
+import { Cell } from "../models/Cell";
+import { Colors } from "../models/Colors";
 
 export enum FigureIcon {
   whiteKing = "\u2654",

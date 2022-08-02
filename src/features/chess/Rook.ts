@@ -1,6 +1,6 @@
-import { Cell } from "../Cell";
-import { Colors } from "../Colors";
-import { Figure, FigureIcon, FigureNames } from "./Figure";
+import { Cell } from "../../models/Cell";
+import { Colors } from "../../models/Colors";
+import { Figure, FigureIcon, FigureNames } from "../../features/Figure";
 
 export class Rook extends Figure {
   constructor(color: Colors, cell: Cell) {

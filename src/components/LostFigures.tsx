@@ -1,4 +1,4 @@
-import { Figure } from "../models/figures/Figure";
+import { Figure } from "../features/Figure";
 
 interface LostFiguresProps {
   title: string;

@@ -1,13 +1,7 @@
 import { Cell } from "./Cell";
 import { Colors } from "./Colors";
-import { Bishop } from "./figures/Bishop";
-import { Figure } from "./figures/Figure";
-import { King } from "./figures/King";
-import { Knight } from "./figures/Knight";
-import { Pawn } from "./figures/Pawn";
-import { Queen } from "./figures/Queen";
-import { Rook } from "./figures/Rook";
-import { Stone } from "./figures/Stone";
+import { Figure } from "../features/Figure";
+import { Stone } from "../features/checkers/Stone";
 
 export class Board {
   cells: Cell[][] = [];
@@ -36,6 +30,14 @@ export class Board {
     return newBoard;
   }
 
+  /**
+   * Переработать логику подстветки и формирования массива клеток
+   *   доступных для движения.
+   *
+   * Фигура должна отвечать за вычесление массива доступных для
+   *   движения клеток согласно собственным правилам.
+   */
+
   public highlightCells(selectedCell: Cell | null) {
     for (let i = 0; i < this.cells.length; i++) {
       const row = this.cells[i];
@@ -46,85 +48,14 @@ export class Board {
     }
   }
 
-  public getCell(x: number, y: number) {
-    return this.cells[y][x];
-  }
-
-  private addBishops() {
-    new Bishop(Colors.WHITE, this.getCell(2, 7));
-    new Bishop(Colors.BLACK, this.getCell(2, 0));
-    new Bishop(Colors.WHITE, this.getCell(5, 7));
-    new Bishop(Colors.BLACK, this.getCell(5, 0));
-  }
-
-  private addKings() {
-    new King(Colors.WHITE, this.getCell(4, 7));
-    new King(Colors.BLACK, this.getCell(4, 0));
-  }
-
-  private addKnights() {
-    new Knight(Colors.WHITE, this.getCell(1, 7));
-    new Knight(Colors.BLACK, this.getCell(1, 0));
-    new Knight(Colors.WHITE, this.getCell(6, 7));
-    new Knight(Colors.BLACK, this.getCell(6, 0));
-  }
-
-  private addPawns() {
-    for (let i = 0; i < 8; i++) {
-      new Pawn(Colors.WHITE, this.getCell(i, 6));
-      new Pawn(Colors.BLACK, this.getCell(i, 1));
+  public getCell(x: number, y: number): Cell | null {
+    // todo: assert the limits
+    // Done?
+    if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+      return this.cells[y][x];
+    } else {
+      return null;
     }
   }
 
-  private addQueens() {
-    new Queen(Colors.WHITE, this.getCell(3, 7));
-    new Queen(Colors.BLACK, this.getCell(3, 0));
-  }
-
-  private addRooks() {
-    new Rook(Colors.WHITE, this.getCell(0, 7));
-    new Rook(Colors.BLACK, this.getCell(0, 0));
-    new Rook(Colors.WHITE, this.getCell(7, 7));
-    new Rook(Colors.BLACK, this.getCell(7, 0));
-  }
-
-  public addChessFigures() {
-    this.addBishops();
-    this.addKings();
-    this.addKnights();
-    this.addPawns();
-    this.addQueens();
-    this.addRooks();
-  }
-
-  private addWhiteStones() {
-    for (let x = 0; x < 8; x++) {
-      for (let y = 5; y < 8; y++) {
-        if (x % 2 !== 0 && y % 2 === 0) {
-          new Stone(Colors.WHITE, this.getCell(x, y));
-        }
-        if (x % 2 === 0 && y % 2 !== 0) {
-          new Stone(Colors.WHITE, this.getCell(x, y));
-        }
-      }
-    }
-  }
-
-  private addBlackStones() {
-    for (let x = 0; x < 8; x++) {
-      for (let y = 0; y < 3; y++) {
-        if (x % 2 !== 0 && y % 2 === 0) {
-          new Stone(Colors.BLACK, this.getCell(x, y));
-        }
-        if (x % 2 === 0 && y % 2 !== 0) {
-          new Stone(Colors.BLACK, this.getCell(x, y));
-        }
-      }
-    }
-  }
-
-  public addCheckersFigures() {
-    this.addWhiteStones();
-    this.addBlackStones();
-  }
 }
