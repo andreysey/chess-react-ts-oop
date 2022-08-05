@@ -16,7 +16,8 @@ export class Cell {
     x: number,
     y: number,
     color: Colors,
-    figure: Figure | null
+    figure: Figure | null,
+    id: number,
   ) {
     this.x = x;
     this.y = y;
@@ -24,7 +25,8 @@ export class Cell {
     this.figure = figure;
     this.board = board;
     this.availible = false;
-    this.id = Math.random();
+    this.id = id;
+    // this.id = Math.random();
   }
 
   isEmpty(): boolean {

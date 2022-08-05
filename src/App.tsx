@@ -86,7 +86,6 @@ export default function App() {
           const deployChess = new DeployChessFigure();
           deployChess.deployFigure(newBoard);
           setBoard(newBoard);
-         
           break;
       }
     };
@@ -103,6 +102,7 @@ export default function App() {
           board={board}
           setBoard={setBoard}
           currentPlayer={currentPlayer}
+          currentGame={currentGame}
           swapPlayer={swapPlayer}
         />
         <div>

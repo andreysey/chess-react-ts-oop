@@ -9,13 +9,16 @@ export class Board {
   lostWhiteFigures: Figure[] = [];
 
   public initCells() {
+    let id = 1;
     for (let i = 0; i < 8; i++) {
       const row: Cell[] = [];
       for (let j = 0; j < 8; j++) {
         if ((i + j) % 2 !== 0) {
-          row.push(new Cell(this, j, i, Colors.BLACK, null)); // Black cell
+          row.push(new Cell(this, j, i, Colors.BLACK, null, id)); // Black cell
+          id++;
         } else {
-          row.push(new Cell(this, j, i, Colors.WHITE, null)); // White cell
+          row.push(new Cell(this, j, i, Colors.WHITE, null, id)); // White cell
+          id++;
         }
       }
       this.cells.push(row);
@@ -36,14 +39,15 @@ export class Board {
    *
    * Фигура должна отвечать за вычесление массива доступных для
    *   движения клеток согласно собственным правилам.
+   * 
+   * Done?
    */
 
   public highlightCells(selectedCell: Cell | null) {
-    for (let i = 0; i < this.cells.length; i++) {
-      const row = this.cells[i];
-      for (let j = 0; j < row.length; j++) {
-        const target = row[j];
-        target.availible = !!selectedCell?.figure?.canMove(target);
+    const moveArrays = selectedCell?.figure?.canMove(selectedCell);
+    if (moveArrays) {
+      for (let i = 0; i < moveArrays.length; i++) {
+        this.getCell(moveArrays[i][0], moveArrays[i][1])!.availible = true;
       }
     }
   }
@@ -57,5 +61,4 @@ export class Board {
       return null;
     }
   }
-
 }

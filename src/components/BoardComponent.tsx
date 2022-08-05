@@ -9,30 +9,68 @@ interface BoardProps {
   setBoard: (board: Board) => void;
   currentPlayer: Player | null;
   swapPlayer: () => void;
+  currentGame: string;
 }
 
 export default function BoardComponent({
   board,
   setBoard,
   currentPlayer,
+  currentGame,
   swapPlayer,
 }: BoardProps) {
-  const [selectedCell, setSelectedCell] = useState<Cell | null>(null);  
+  const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
 
   const click = (cell: Cell) => {
-    if (
-      selectedCell &&
-      selectedCell !== cell &&
-      selectedCell.figure?.canMove(cell)
-    ) {
-      selectedCell.moveFigure(cell);
-      swapPlayer();
-      setSelectedCell(null);
-    } else {
-      if (cell.figure?.color === currentPlayer?.color) {
-        setSelectedCell(cell);
-      }
+    switch (currentGame) {
+      case "checkers":
+        if (
+          selectedCell &&
+          selectedCell !== cell &&
+          selectedCell.figure?.canMove(cell) &&
+          cell.availible &&
+          !cell.figure
+        ) {
+          selectedCell.moveFigure(cell);
+          swapPlayer();
+          setSelectedCell(null);
+        } else {
+          if (cell.figure?.color === currentPlayer?.color) {
+            setSelectedCell(cell);
+          }
+        }
+        break;
+      case "chess":
+        if (
+          selectedCell &&
+          selectedCell !== cell &&
+          selectedCell.figure?.canMove(cell) &&
+          cell.availible
+        ) {
+          selectedCell.moveFigure(cell);
+          swapPlayer();
+          setSelectedCell(null);
+        } else {
+          if (cell.figure?.color === currentPlayer?.color) {
+            setSelectedCell(cell);
+          }
+        }
+        break;
     }
+    // if (
+    //   selectedCell &&
+    //   selectedCell !== cell &&
+    //   selectedCell.figure?.canMove(cell) &&
+    //   cell.availible
+    // ) {
+    //   selectedCell.moveFigure(cell);
+    //   swapPlayer();
+    //   setSelectedCell(null);
+    // } else {
+    //   if (cell.figure?.color === currentPlayer?.color) {
+    //     setSelectedCell(cell);
+    //   }
+    // }
   };
 
   useEffect(() => {

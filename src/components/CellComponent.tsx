@@ -15,6 +15,7 @@ export default function CellComponent({ cell, selected, click }: CellProps) {
     >
       {cell.availible && !cell.figure && <div className="available"></div>}
       {cell.figure?.logo}
+      
     </div>
   );
 }
