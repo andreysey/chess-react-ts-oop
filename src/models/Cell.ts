@@ -100,7 +100,7 @@ export class Cell {
       : this.board.lostWhiteFigures.push(figure);
   }
 
-  moveFigure(target: Cell) {
+  moveFigure(target: Cell, selected?: Cell) {
     if (this.figure && this.figure?.canMove(target)) {
       this.figure.moveFigure(target);
       if (target.figure) {

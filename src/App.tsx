@@ -10,39 +10,38 @@ import { DeployChessFigure } from "./features/chess/DeployChessFigure";
 import { DeployCheckersFigure } from "./features/checkers/DeployCheckersFigure";
 
 // 1 class Board refactor getCell method assert the limits Done?
- /**
-   * 2 Переработать логику подстветки и формирования массива клеток
-*   доступных для движения.
-*
-* Фигура должна отвечать за вычесление массива доступных для
-*   движения клеток согласно собственным правилам.
-*class Board method highlithCells
-*/
+/**
+ * 2 Переработать логику подстветки и формирования массива клеток
+ *   доступных для движения.
+ *
+ * Фигура должна отвечать за вычесление массива доступных для
+ *   движения клеток согласно собственным правилам.
+ *class Board method highlithCells
+ */
 // 3 refactor class Board methods games out
 // 4 add in figure classes array  logic direction
 /**
-     * const board;
-     *
-     * const diagonal = [1..10].map( i => board.get(x + i*d, y + i*d) );
-     *
-     *       0 1 2    -> x
-     *      -------
-     *  0  | 1 2 3
-     *  1  | 4 5 6
-     *  2  | 7 8 9
-     *
-     *  ^
-     *  y
-     *
-     *  \ / - два возможных направления диагонали по X
-     *
-     *  [0,2]
-     *  1: [0 + 1*(1), 2 + 1*(-1) ] = [1. 1] => 5
-     *  2: [0 + 2*(1), 2 + 2*(-1) ] = [2, 0] => 3
-     *
-     *  [5, 3]
-     */
-
+ * const board;
+ *
+ * const diagonal = [1..10].map( i => board.get(x + i*d, y + i*d) );
+ *
+ *       0 1 2    -> x
+ *      -------
+ *  0  | 1 2 3
+ *  1  | 4 5 6
+ *  2  | 7 8 9
+ *
+ *  ^
+ *  y
+ *
+ *  \ / - два возможных направления диагонали по X
+ *
+ *  [0,2]
+ *  1: [0 + 1*(1), 2 + 1*(-1) ] = [1. 1] => 5
+ *  2: [0 + 2*(1), 2 + 2*(-1) ] = [2, 0] => 3
+ *
+ *  [5, 3]
+ */
 
 export default function App() {
   const [currentGame, setCurrentGame] = useState<string>("");
@@ -52,7 +51,7 @@ export default function App() {
       <div className={"menu"}>
         <h2>Chose game</h2>
         <button onClick={() => setCurrentGame("checkers")}>
-          Checkers {FigureIcon.checkerBoard}
+          Checkers {FigureIcon.blackStone}
         </button>
         <button onClick={() => setCurrentGame("chess")}>
           Chess {FigureIcon.blackKnight}
@@ -62,7 +61,7 @@ export default function App() {
   }
 
   function Game() {
-    const [board, setBoard] = useState(new Board());
+    const [board, setBoard] = useState(new Board(8));
     const [whitePlayer, setWhitePlayer] = useState(new Player(Colors.WHITE));
     const [blackPlayer, setBlackPlayer] = useState(new Player(Colors.BLACK));
     const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
@@ -73,9 +72,7 @@ export default function App() {
     }, []);
 
     const restart = () => {
-      const newBoard = new Board();
-      newBoard.initCells();
-      
+      const newBoard = new Board(8);
 
       switch (currentGame) {
         case "checkers":
@@ -84,7 +81,7 @@ export default function App() {
           break;
         case "chess":
           const deployChess = new DeployChessFigure();
-          deployChess.deployFigure(newBoard);
+          deployChess.deployFigures(newBoard);
           setBoard(newBoard);
           break;
       }

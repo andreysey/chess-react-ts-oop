@@ -45,7 +45,7 @@ export class DeployChessFigure {
     new Rook(Colors.WHITE, board.getCell(7, 7)!);
     new Rook(Colors.BLACK, board.getCell(7, 0)!);
   }
-  public deployFigure(board: Board): void {
+  public deployFigures(board: Board): void {
     this.addBishops(board);
     this.addKings(board);
     this.addKnights(board);

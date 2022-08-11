@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Board } from "../models/Board";
 import { Cell } from "../models/Cell";
+import { Colors } from "../models/Colors";
 import { Player } from "../models/Player";
 import CellComponent from "./CellComponent";
+import {FigureIcon} from '../features/Figure';
 
 interface BoardProps {
   board: Board;
@@ -47,7 +49,7 @@ export default function BoardComponent({
           selectedCell.figure?.canMove(cell) &&
           cell.availible
         ) {
-          selectedCell.moveFigure(cell);
+          selectedCell.moveFigure(cell, selectedCell);
           swapPlayer();
           setSelectedCell(null);
         } else {
@@ -57,20 +59,6 @@ export default function BoardComponent({
         }
         break;
     }
-    // if (
-    //   selectedCell &&
-    //   selectedCell !== cell &&
-    //   selectedCell.figure?.canMove(cell) &&
-    //   cell.availible
-    // ) {
-    //   selectedCell.moveFigure(cell);
-    //   swapPlayer();
-    //   setSelectedCell(null);
-    // } else {
-    //   if (cell.figure?.color === currentPlayer?.color) {
-    //     setSelectedCell(cell);
-    //   }
-    // }
   };
 
   useEffect(() => {
@@ -89,7 +77,7 @@ export default function BoardComponent({
 
   return (
     <div>
-      <p>Step {currentPlayer?.color}</p>
+      <p>Step {currentPlayer?.color === Colors.WHITE ? FigureIcon.whiteStone  : FigureIcon.blackStone}</p>
       <div className="board">
         {board.cells.map((row, index) => (
           <React.Fragment key={index}>
