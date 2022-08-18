@@ -46,6 +46,75 @@ import { DeployCheckersFigure } from "./features/checkers/DeployCheckersFigure";
 export default function App() {
   const [currentGame, setCurrentGame] = useState<string>("");
 
+  // const arr = [12, 5, 3, 7, 6, 2, 9, 7];
+
+  // const sum = (arr) => (arr.length == "" ? 0 : arr[0] + sum(arr.slice(1)));
+  // // console.log(sum(arr));
+
+  // const recursiveCount = (arr) => {
+  //   if (arr == "") return 0;
+
+  //   return 1 + recursiveCount(arr.slice(1));
+  // };
+
+  // // console.log(recursiveCount(arr));
+
+  // const recursiveMaxNumber = (arr) => {
+  //   if (arr.length === 0) return -Infinity;
+  //   if (arr.length === 1) return arr[0];
+
+  //   return Math.max(arr[0], recursiveMaxNumber(arr.slice(1)));
+  // };
+
+  // // console.log(recursiveMaxNumber(arr));
+  // const quickSortFirst = (arr) => {
+  //   if (arr.length < 2) {
+  //     return arr;
+  //   }
+
+  //   let pivot = arr[0];
+
+  //   let less = [];
+  //   let greater = [];
+
+  //   for (let i = 1; i < arr.length; i++) {
+  //     arr[i] < pivot ? less.push(arr[i]) : greater.push(arr[i]);
+  //   }
+  //   return quickSortFirst(less).concat(
+  //     pivot,
+  //     quickSortFirst(greater)
+  //   );
+  // };
+
+  // const quickSortRandom = (arr) => {
+  //   if (arr.length < 2) return arr;
+
+  //   const pivot = arr[Math.floor(Math.random() * arr.length)];
+
+  //   let left = [],
+  //     right = [],
+  //     equal = [];
+
+  //   for (let val of arr) {
+  //     if (val < pivot) {
+  //       left.push(val);
+  //     } else if (val > pivot) {
+  //       right.push(val);
+  //     } else {
+  //       equal.push(val);
+  //     }
+  //   }
+  //   return [...quickSortRandom(left), ...equal, ...quickSortRandom(right)];
+  // };
+
+  // console.log(quickSortFirst(arr));
+  // console.log( quickSortRandom(arr));
+  
+  // countdown(100);
+
+  // console.log(`index = ${binarySearch(myArray, 170)}`);
+  // console.log(Math.log2(9));
+
   function Menu() {
     return (
       <div className={"menu"}>
