@@ -9,6 +9,7 @@ import { Player } from "./models/Player";
 import { DeployChessFigure } from "./features/chess/DeployChessFigure";
 import { DeployCheckersFigure } from "./features/checkers/DeployCheckersFigure";
  // changes
+ // add
 // 1 class Board refactor getCell method assert the limits Done?
 /**
  * 2 Переработать логику подстветки и формирования массива клеток
